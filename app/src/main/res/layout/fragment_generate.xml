@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    android:orientation="vertical"
+    tools:context=".GenerateFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PASSWORD GENERATOR"
+            android:textColor="@color/gray"
+            android:textSize="25dp"
+            android:fontFamily="@font/poppinsbold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- AND -"
+            android:textColor="@color/gray"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppinsbold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHECKER"
+            android:textColor="@color/gray"
+            android:textSize="25dp"
+            android:fontFamily="@font/poppinsbold"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/box_background"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate a strong password that includes \n uppercase and lowercase letters, numbers, and \nsymbols with the proper length!"
+            android:fontFamily="@font/poppins"
+            android:layout_marginTop="30dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check the strength of your password and protect \n your data!"
+            android:fontFamily="@font/poppins"
+            android:layout_marginTop="15dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="260dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/pass_border"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/btnCopy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_content_copy_24"
+                android:background="@drawable/btn_gen_check"
+                android:padding="12sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="5dp"
+                android:contentDescription="Copy Button"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37dp"
+                android:text="Password Strength: "
+                android:fontFamily="@font/poppinsbold"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text=""
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37dp"
+                android:text="Password Lacks: "
+                android:fontFamily="@font/poppinsbold"
+                android:textSize="10sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvSuggest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text=""
+                android:fontFamily="@font/poppins"
+                android:textSize="10sp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnGenerate"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="GENERATE"
+                android:fontFamily="@font/poppinsbold"
+                android:background="@drawable/btn_gen_check"/>
+
+            <Button
+                android:id="@+id/btnCheck"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="CHECK"
+                android:fontFamily="@font/poppinsbold"
+                android:background="@drawable/btn_gen_check"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

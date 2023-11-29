@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/orange">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/box_background"
+            android:gravity="center"
+            android:padding="10sp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PASSWORD GENERATOR"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:fontFamily="@font/poppinsbold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- AND -"
+                android:textColor="@color/orange"
+                android:textSize="10dp"
+                android:fontFamily="@font/poppinsbold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHECKER"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:fontFamily="@font/poppinsbold"/>
+
+            <Button
+                android:id="@+id/btnNavigate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GENERATE NOW!"
+                android:fontFamily="@font/poppinsbold"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_gen_check"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/orange">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="WHY IS A GOOD \n PASSWORD IMPORTANT"
+                android:fontFamily="@font/poppinsbold"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/box_background"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:padding="15sp"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/tvMess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Create strong, secure passwords with our easy-to-use password generator and checker. Protect your online accounts and personal information with passwords that are difficult to crack."
+                        android:fontFamily="@font/poppins"
+                        android:padding="5sp"
+                        android:justificationMode="inter_word"
+                        android:paddingBottom="10sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our password generator creates random, strong passwords that are at least 12 characters long and include a mix of upper and lowercase letters, numbers, and symbols. Our password checker evaluates the strength of your passwords and provides feedback on how to make them more secure."
+                        android:fontFamily="@font/poppins"
+                        android:justificationMode="inter_word"
+                        android:paddingBottom="10sp"
+                        android:padding="5sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Use our password generator and checker to: "
+                        android:fontFamily="@font/poppins"
+                        android:padding="5sp"
+                        android:textColor="@color/black"/>
+
+                    <TableLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30sp"
+                        android:layout_marginBottom="20sp">
+                        <TableRow
+                            android:paddingBottom="5sp">
+                            <TextView
+                                android:layout_column="1"
+                                android:text="•"/>
+                            <TextView
+                                android:layout_column="2"
+                                android:layout_width="wrap_content"
+                                android:text="Create new passwords for all of your online accounts"
+                                android:fontFamily="@font/poppins"
+                                android:justificationMode="inter_word"
+                                android:layout_marginStart="5sp"
+                                android:textColor="@color/black"
+                                android:paddingRight="20sp"/>
+                        </TableRow>
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="•"/>
+                            <TextView
+                                android:layout_column="2"
+                                android:layout_width="wrap_content"
+                                android:text="Change your passwords regularly"
+                                android:fontFamily="@font/poppins"
+                                android:layout_marginStart="5sp"
+                                android:textColor="@color/black"/>
+                        </TableRow>
+                        <TableRow>
+                            <TextView
+                                android:layout_column="1"
+                                android:text="•"/>
+                            <TextView
+                                android:layout_column="2"
+                                android:layout_width="wrap_content"
+                                android:text="Improve your online security"
+                                android:fontFamily="@font/poppins"
+                                android:layout_marginStart="5sp"
+                                android:textColor="@color/black"/>
+                        </TableRow>
+                    </TableLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/black"
+                        android:padding="5sp"
+                        android:justificationMode="inter_word"
+                        android:text="Get started today and protect your passwords with our powerful password generator and checker!"/>
+                </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ADVISORY"
+                android:fontFamily="@font/poppinsbold"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_background"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="30dp"
+                android:padding="15sp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
+                    android:padding="5sp"
+                    android:text="We value your privacy therefore we do not save or take into our database your generated passwords or passwords encoded. Safe pass with FastPASS."
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
