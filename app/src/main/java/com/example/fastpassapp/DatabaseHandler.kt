@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
         private val DATABASE_VERSION = 1
-        private val DATABASE_NAME = "AccountDatabase"
+        private val DATABASE_NAME = "FastPassDatabase"
         private val TABLE_CONTACTS = "AccountTable"
         private val TABLE_GENPASS = "GeneratedPasswordTable"
         private val KEY_EMAIL = "email"
@@ -18,7 +19,8 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         private val KEY_LNAME = "lastname"
         private val KEY_UNAME = "username"
         private val KEY_PASS = "password"
-        private val KEY_GENPASS ="generated_password"
+        private val KEY_ID = "id"
+        private val KEY_GENERATED_PASS ="generated_password"
 
     }
 
@@ -30,18 +32,19 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 + KEY_UNAME + " TEXT,"
                 + KEY_PASS + " TEXT)")
 
-        val CREATE_GENPASS_TABLE = ("CREATE TABLE " + TABLE_GENPASS + "("
-                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_GENPASS + " TEXT,"
-                + "FOREIGN KEY($KEY_EMAIL) REFERENCES $TABLE_CONTACTS($KEY_EMAIL))")
-
         db?.execSQL(CREATE_CONTACTS_TABLE)
-        db?.execSQL(CREATE_GENPASS_TABLE)
+
+        val CREATE_PASSWORDS_TABLE = ("CREATE TABLE " + TABLE_GENPASS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_EMAIL + " TEXT,"
+                + KEY_GENERATED_PASS + " TEXT)")
+
+        db?.execSQL(CREATE_PASSWORDS_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS)
-        db!!.execSQL("DROP TABLE IF EXISTS $TABLE_GENPASS")
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_GENPASS)
         onCreate(db)
     }
 
@@ -108,31 +111,54 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(KEY_EMAIL, email)
-        contentValues.put(KEY_GENPASS, generatedPassword)
+        contentValues.put(KEY_GENERATED_PASS, generatedPassword)
 
-        val success = db.insert(TABLE_GENPASS, null, contentValues)
-        db.close()
+        var success: Long = -1
+
+        try {
+            success = db.insert(TABLE_GENPASS, null, contentValues)
+        } catch (e: Exception) {
+            // Handle the exception, log it, or perform any necessary actions.
+            e.printStackTrace()
+        } finally {
+            db.close()
+        }
         return success
     }
 
     @SuppressLint("Range")
-    fun getLast20GeneratedPasswords(email: String): List<String> {
-        val db = readableDatabase
-        val passwordList = mutableListOf<String>()
+    fun getLast20GeneratedPasswords(email: String): List<EmpModelClass> {
+        val empList: ArrayList<EmpModelClass> = ArrayList()
+        val db = this.readableDatabase
+        val cursor = db.query(
+            TABLE_GENPASS,
+            arrayOf(KEY_ID, KEY_GENERATED_PASS, KEY_EMAIL),
+            "$KEY_EMAIL = ?",
+            arrayOf(email),
+            null,
+            null,
+            "$KEY_ID DESC",
+            "20"
+        )
 
-        val query = "SELECT $KEY_GENPASS FROM $TABLE_GENPASS WHERE $KEY_EMAIL = ? ORDER BY id DESC LIMIT 20"
-        val selectionArgs = arrayOf(email)
-
-        val cursor: Cursor = db.rawQuery(query, selectionArgs)
-
-        while (cursor.moveToNext()) {
-            val generatedPassword = cursor.getString(cursor.getColumnIndex(KEY_GENPASS))
-            passwordList.add(generatedPassword)
+        if (cursor.moveToFirst()) {
+            do {
+                var id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
+                val generatedPassword = cursor.getString(cursor.getColumnIndex(KEY_GENERATED_PASS))
+                val userEmail = cursor.getString(cursor.getColumnIndex(KEY_EMAIL))
+                val empModel = EmpModelClass(id, generatedPassword, userEmail)
+                empList.add(empModel)
+            } while (cursor.moveToNext())
         }
 
         cursor.close()
         db.close()
 
-        return passwordList
+        return empList
+    }
+    fun truncateDatabase() {
+        val db = this.writableDatabase
+        db.delete(TABLE_GENPASS, null, null)
+        db.close()
     }
 }

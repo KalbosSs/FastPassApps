@@ -49,10 +49,7 @@ class GenerateFragment : Fragment() {
             val intent: Intent? = activity?.intent
 
             if (intent != null) {
-
                 val uname: String? = intent.getStringExtra("USERNAME")
-
-
                 if (uname != null) {
                     val user = databaseHandler.getUserDetails(uname)
 
@@ -226,7 +223,7 @@ class GenerateFragment : Fragment() {
     }
 
 
-    class GeneratePassword { // Generates random password
+    class GeneratePassword {
         companion object {
             const val DATA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!$%&@#_"
             val RANDOM = Random()
